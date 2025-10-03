@@ -1,0 +1,100 @@
+<div class="container">
+  <div class="main-content">
+    <div class="image-section">
+      <img [src]="photoUrl" alt="Library Image" class="company-image">
+    </div>
+
+    <div class="content-section">
+      <h1>{{ title }}</h1>
+      <p class="subtitle-text">Your Free Online Library</p>
+      <p class="mission-text">
+        We provide an online library where you can borrow books for free and read them directly in your browser.
+      </p>
+
+      <p>Our mission is to make knowledge and stories available to everyone. You can explore a wide range of genres, from science to novels, and enjoy them without cost.</p>
+      <p>Simply browse, borrow, and start reading. No hidden fees, no limits, just free access to books whenever you want.</p>
+
+      <div class="interaction-section">
+        <div class="likes-container" [class.highlight]="likes >= 5">
+          <p class="likes-text">Likes: {{ likes }}</p>
+          <button (click)="incrementLikes()" class="btn btn-like">👍 Like</button>
+        </div>
+        
+        <div class="toggle-container">
+          <button (click)="toggleThankYouMessage()" class="btn btn-toggle">
+            {{ showThankYouMessage ? 'Hide Message' : 'Show Message' }}
+          </button>
+          <p *ngIf="showThankYouMessage" class="thank-you-message">
+            Thank you for visiting our online library! 📚
+          </p>
+        </div>
+      </div>
+
+      <div class="visitor-section">
+        <h3>Welcome, Reader!</h3>
+        
+        <div class="input-group">
+          <label for="visitorName">Your Name:</label>
+          <input 
+            type="text" 
+            id="visitorName"
+            [(ngModel)]="visitorName" 
+            placeholder="Type your name..."
+            class="input-field">
+          <p *ngIf="visitorName" class="greeting">Hello, {{ visitorName }}! 👋</p>
+        </div>
+        
+        <div class="input-group">
+          <label for="visitorEmail">Your Email:</label>
+          <input 
+            type="email" 
+            id="visitorEmail"
+            [(ngModel)]="visitorEmail" 
+            placeholder="your@email.com"
+            class="input-field"
+            [disabled]="subscribed">
+          <button 
+            (click)="subscribe()" 
+            [disabled]="isSubscribeDisabled || !visitorEmail"
+            class="btn btn-subscribe">
+            Subscribe
+          </button>
+          <p *ngIf="subscribed" class="subscription-message">
+            Thank you, {{ visitorEmail }}, we will contact you soon! ✅
+          </p>
+          <button 
+            *ngIf="subscribed"
+            (click)="resetSubscription()" 
+            class="btn btn-reset">
+            Subscribe Again
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="contact-footer">
+    <div class="contact-info">
+      <div class="contact-item">
+        <h3>Address</h3>
+        <p>123 Library Street</p>
+        <p>Booktown, BK 12345</p>
+      </div>
+      <div class="contact-item">
+        <h3>Email</h3>
+        <p>support@onlinelibrary.com</p>
+        <p>info@onlinelibrary.com</p>
+      </div>
+      <div class="contact-item">
+        <h3>Phone</h3>
+        <p>+1 (555) 123-4567</p>
+        <p>+1 (555) 987-6543</p>
+      </div>
+      <div class="contact-item">
+        <h3>Hours</h3>
+        <p>Mon - Fri: 9:00 - 18:00</p>
+        <p>Sat: 10:00 - 16:00</p>
+      </div>
+    </div>
+  </footer>
+</div>
